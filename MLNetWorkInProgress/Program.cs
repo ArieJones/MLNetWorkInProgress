@@ -1,5 +1,6 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Runtime.Data;
+using Microsoft.ML.Transforms.Text;
 using System;
 
 namespace MLNetWorkInProgress
@@ -39,42 +40,42 @@ namespace MLNetWorkInProgress
                          .Append(mlContext.Transforms.Categorical.OneHotEncoding("DefaultProfileType"))
                          .Append(mlContext.Transforms.Categorical.OneHotEncoding("InsuranceCode"))
                          .Append(mlContext.Transforms.Categorical.OneHotEncoding("Zip"))
-                         //.Append(mlContext.Transforms.Text.FeaturizeText("CarrierName",
-                         //                                                "CarrierName",
-                         //                                                a =>
-                         //                                                {
-                         //                                                    a.KeepDiacritics = false;
-                         //                                                    a.KeepPunctuations = false;
-                         //                                                    a.TextCase =
-                         //                                                        TextNormalizingEstimator
-                         //                                                            .CaseNormalizationMode
-                         //                                                            .Lower;
-                         //                                                    a.OutputTokens = true;
-                         //                                                    a.VectorNormalizer =
-                         //                                                        TextFeaturizingEstimator
-                         //                                                            .TextNormKind.L2;
-                         //                                                }))
-                         //.Append(mlContext.Transforms.Concatenate("Address",
-                         //                                         "Address1",
-                         //                                         "Address2"))
-                         //.Append(mlContext.Transforms.Text.FeaturizeText("Address",
-                         //                                                "Address",
-                         //                                                a =>
-                         //                                                {
-                         //                                                    a.KeepDiacritics = false;
-                         //                                                    a.KeepPunctuations = false;
-                         //                                                    a.TextCase =
-                         //                                                        TextNormalizingEstimator
-                         //                                                            .CaseNormalizationMode
-                         //                                                            .Lower;
-                         //                                                    a.OutputTokens = true;
-                         //                                                    a.VectorNormalizer =
-                         //                                                        TextFeaturizingEstimator
-                         //                                                            .TextNormKind.L2;
-                         //                                                }))
+                         .Append(mlContext.Transforms.Text.FeaturizeText("CarrierName",
+                                                                         "CarrierName",
+                                                                         a =>
+                                                                         {
+                                                                             a.KeepDiacritics = false;
+                                                                             a.KeepPunctuations = false;
+                                                                             a.TextCase =
+                                                                                 TextNormalizingEstimator
+                                                                                     .CaseNormalizationMode
+                                                                                     .Lower;
+                                                                             a.OutputTokens = true;
+                                                                             a.VectorNormalizer =
+                                                                                 TextFeaturizingEstimator
+                                                                                     .TextNormKind.L2;
+                                                                         }))
+                         .Append(mlContext.Transforms.Concatenate("Address",
+                                                                  "Address1",
+                                                                  "Address2"))
+                         .Append(mlContext.Transforms.Text.FeaturizeText("Address",
+                                                                         "Address",
+                                                                         a =>
+                                                                         {
+                                                                             a.KeepDiacritics = false;
+                                                                             a.KeepPunctuations = false;
+                                                                             a.TextCase =
+                                                                                 TextNormalizingEstimator
+                                                                                     .CaseNormalizationMode
+                                                                                     .Lower;
+                                                                             a.OutputTokens = true;
+                                                                             a.VectorNormalizer =
+                                                                                 TextFeaturizingEstimator
+                                                                                     .TextNormKind.L2;
+                                                                         }))
                          .Append(mlContext.Transforms.Concatenate("Features",
-                                                                  //"CarrierName",
-                                                                  //"Address",
+                                                                  "CarrierName",
+                                                                  "Address",
                                                                   "Zip",
                                                                   "State",
                                                                   "DefaultProfileType",
